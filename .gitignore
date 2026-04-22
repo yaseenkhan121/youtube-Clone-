@@ -1,0 +1,15 @@
+node_modules/
+vendor/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+dist/
+public/storage
+storage/*.key
+storage/pail
+.phpunit.result.cache
+.idea/
+.vscode/
+*.log

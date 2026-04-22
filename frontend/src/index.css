@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #7C3AED;
+  --color-secondary: #A78BFA;
+  --color-app-bg: #0F0F1A;
+  --color-card-bg: #1A1A2E;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #9CA3AF;
+  --color-border-color: #2E2E4E;
+}
+
+@layer base {
+  body {
+    @apply bg-app-bg text-text-primary font-sans antialiased;
+    font-size: 14px; /* Professional standard for SaaS apps */
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-app-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border-color rounded-full hover:bg-primary/50 transition-colors;
+  }
+}
+
+@utility purple-glow {
+  box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4);
+}
+
+@layer components {
+  .video-card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1.5 hover:purple-glow hover:z-10 cursor-pointer;
+  }
+
+  .nav-blur {
+    @apply backdrop-blur-md bg-app-bg border-b border-border-color sticky top-0 z-50 shadow-2xl;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-4 p-3 rounded-xl hover:bg-card-bg transition-colors cursor-pointer;
+  }
+
+  .sidebar-item-active {
+    @apply bg-primary/20 text-primary font-semibold;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .youtube-glass {
+    @apply bg-black/60 backdrop-blur-xl border border-white/5;
+  }
+}
