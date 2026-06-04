@@ -124,9 +124,17 @@ const Navbar = ({ onToggleSidebar }) => {
                             className="flex items-center gap-2 p-1 pl-3 bg-white/5 rounded-full border border-white/10 hover:border-primary/50 transition-all active:scale-95"
                         >
                             <span className="text-sm font-bold text-white hidden sm:block">{user?.name}</span>
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-purple-400 flex items-center justify-center text-white font-bold text-xs ring-2 ring-transparent group-hover:ring-primary/50">
-                                {user?.name?.charAt(0).toUpperCase()}
-                            </div>
+                            {user?.avatar_path ? (
+                                <img 
+                                    src={user.avatar_path.startsWith('http') ? user.avatar_path : `/storage/${user.avatar_path}`} 
+                                    alt={user.name} 
+                                    className="w-8 h-8 rounded-full object-cover ring-2 ring-transparent group-hover:ring-primary/50" 
+                                />
+                            ) : (
+                                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-purple-400 flex items-center justify-center text-white font-bold text-xs ring-2 ring-transparent group-hover:ring-primary/50">
+                                    {user?.name?.charAt(0).toUpperCase()}
+                                </div>
+                            )}
                         </button>
 
                         {isProfileOpen && (

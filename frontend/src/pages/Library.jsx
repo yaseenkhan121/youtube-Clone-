@@ -91,8 +91,16 @@ const Library = () => {
         <div className="max-w-[1500px] mx-auto p-4 md:p-8 pb-32 space-y-24">
             {/* Library Header */}
             <div className="flex items-center gap-6 p-8 bg-card-bg/20 rounded-[3rem] border border-border-color backdrop-blur-xl">
-               <div className="w-20 h-20 rounded-[2rem] bg-primary flex items-center justify-center text-white shadow-2xl shadow-primary/20">
-                    <User size={40} />
+               <div className="w-20 h-20 rounded-[2rem] bg-primary flex items-center justify-center text-white shadow-2xl shadow-primary/20 overflow-hidden">
+                    {user?.avatar_path ? (
+                        <img 
+                            src={user.avatar_path.startsWith('http') ? user.avatar_path : `/storage/${user.avatar_path}`} 
+                            alt={user.name} 
+                            className="w-full h-full object-cover" 
+                        />
+                    ) : (
+                        <User size={40} />
+                    )}
                </div>
                <div>
                    <h1 className="text-4xl font-black text-white tracking-tighter">Welcome, {user?.name || 'Explorer'}</h1>

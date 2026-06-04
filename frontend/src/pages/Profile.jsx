@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { authService } from '../services/api';
-import { User as UserIcon, Camera, Save, Loader2, CheckCircle, Video, History, Heart, Bookmark, Sparkles, ShieldCheck, Mail, User } from 'lucide-react';
+import { Camera, Save, Loader2, CheckCircle, Video, History, Heart, Bookmark, Sparkles, ShieldCheck, Mail, User } from 'lucide-react';
 
 const Profile = () => {
     const { user, updateProfile } = useAuth();
@@ -83,7 +83,7 @@ const Profile = () => {
                     <div className="w-44 h-44 rounded-[3rem] bg-card-bg flex items-center justify-center overflow-hidden border-4 border-primary/20 shadow-2xl relative group/avatar">
                         {user?.avatar_path ? (
                             <img 
-                                src={user.avatar_path.startsWith('http') ? user.avatar_path : `http://127.0.0.1:8000/storage/${user.avatar_path}`} 
+                                src={user.avatar_path.startsWith('http') ? user.avatar_path : `/storage/${user.avatar_path}`} 
                                 alt="Avatar" 
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover/avatar:scale-110" 
                             />
@@ -152,7 +152,7 @@ const Profile = () => {
                                     <label className="text-xs font-black text-text-secondary uppercase tracking-[0.2em] ml-2">Public Name</label>
                                     <div className="relative group">
                                         <div className="absolute left-5 top-1/2 -translate-y-1/2 text-text-secondary group-focus-within:text-primary transition-colors">
-                                            <UserIcon size={20} />
+                                            <User size={20} />
                                         </div>
                                         <input
                                             type="text"

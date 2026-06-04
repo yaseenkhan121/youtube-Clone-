@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { useAuth } from './AuthContext';
 
 const NotificationContext = createContext();
@@ -17,7 +17,7 @@ export const NotificationProvider = ({ children }) => {
         
         try {
             setLoading(true);
-            const response = await axios.get('http://127.0.0.1:8000/api/notifications');
+            const response = await api.get('/notifications');
             if (response.data.success) {
                 setNotifications(response.data.data);
                 setUnreadCount(response.data.unread_count);
@@ -43,7 +43,7 @@ export const NotificationProvider = ({ children }) => {
 
     const markAsRead = async (id) => {
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/notifications/${id}/read`);
+            const response = await api.post(`/notifications/${id}/read`);
             if (response.data.success) {
                 setNotifications(prev => prev.map(n => n.id === id ? { ...n, read_at: new Date() } : n));
                 setUnreadCount(prev => Math.max(0, prev - 1));
@@ -55,7 +55,7 @@ export const NotificationProvider = ({ children }) => {
 
     const markAllAsRead = async () => {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/notifications/read-all');
+            const response = await api.post('/notifications/mark-all-read');
             if (response.data.success) {
                 setNotifications(prev => prev.map(n => ({ ...n, read_at: new Date() })));
                 setUnreadCount(0);
